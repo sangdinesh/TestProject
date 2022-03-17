@@ -1,0 +1,43 @@
+package QAtest.webelement;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+
+	 WebDriver driver;
+		
+	// WebElement of Dashboard page [ng-class='{disabled: !activeTab, active: !isLive}']
+		
+		public static String dashboard = ".header";//btn btn-nav
+		public static String HistoricTab = "{disabled: !activeTab, active: !isLive}";
+		public static String upbutton= "fa pull-right fa-chevron-up";
+		
+		
+		// WebElement of Login page
+		By EmailID = By.id("emailAddress");
+		By Password = By.id("password");
+		By Signinbutton = By.className("MuiButton-label");
+		
+		public void typeEmail(String Email)
+		{
+			driver.findElement(EmailID).sendKeys("Email");
+			
+		}
+		
+		public void typePassword(String Pwd)
+		{
+			driver.findElement(Password).sendKeys("Pwd");
+			
+		}
+		
+		public void clicksigninbutton()
+		{
+			driver.findElement(Signinbutton).click();
+			
+		}
+		public HomePage(WebDriver driver)
+	    {
+			this.driver=driver;
+	    }
+}

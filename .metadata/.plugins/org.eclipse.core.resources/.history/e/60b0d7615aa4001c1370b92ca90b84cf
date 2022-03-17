@@ -1,0 +1,50 @@
+package QAtest.webelement;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
+
+import com.paulhammant.ngwebdriver.NgWebDriver;
+
+public class LoginPage {
+
+	 WebDriver driver;
+	 NgWebDriver ngwebdriver;
+		JavascriptExecutor jsdriver;
+		// WebElement of Login page
+		By EmailID = By.id("emailAddress");
+		By Password = By.id("password");
+		By Signinbutton = By.className("MuiButton-label");
+		
+		
+		public void typeEmail(String Email)
+		{
+			driver.findElement(EmailID).sendKeys("Email");
+			
+		}
+		
+		public void typePassword(String Pwd)
+		{
+			driver.findElement(Password).sendKeys("Pwd");
+			
+		}
+		
+		public void clicksigninbutton()
+		{
+			driver.findElement(Signinbutton).click();
+					
+		}
+		public LoginPage(WebDriver driver)
+	    {
+			this.driver=driver;
+	    }
+		
+		/*
+		 * Get the title of Login Page public String getLoginTitle() { String
+		 * originalTitle= driver.getTitle(); String expectedTitle = "Brains.App"; return
+		 * expectedTitle;
+		 * 
+		 * }
+		 */
+}

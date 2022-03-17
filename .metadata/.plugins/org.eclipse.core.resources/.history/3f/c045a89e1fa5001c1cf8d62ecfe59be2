@@ -1,0 +1,82 @@
+package QAtestproject;
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.paulhammant.ngwebdriver.NgWebDriver;
+
+import QAtest.webelement.DashboardPage;
+import QAtest.webelement.LoginPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class login {
+	static WebDriver driver;
+	NgWebDriver ngwebdriver;
+	JavascriptExecutor jsdriver;
+			
+	@BeforeTest
+	public void setdriver() 
+	{
+	WebDriverManager.chromedriver().setup();
+	driver = new ChromeDriver();
+	jsdriver = (JavascriptExecutor)driver;
+	ngwebdriver=new NgWebDriver(jsdriver);
+	driver.get(" https://reference-test.intellisense.io/");
+	driver.manage().window().maximize();
+	ngwebdriver.waitForAngularRequestsToFinish();
+	   	
+	}
+	
+	@Test (priority=1)
+	public void verifylogin() {
+		
+		LoginPage login=new LoginPage(driver);
+		ngwebdriver.waitForAngularRequestsToFinish();
+		login.typeEmail("menna+testproject@intellisense.io");
+		ngwebdriver.waitForAngularRequestsToFinish();
+		login.typePassword("AutMaNewTest1#");
+		ngwebdriver.waitForAngularRequestsToFinish();
+		login.clicksigninbutton();
+		Assert.assertEquals(driver.getTitle(), "Brains.App");
+		ngwebdriver.waitForAngularRequestsToFinish();
+	}
+	
+	@Test (priority=2)
+	public void verifyhomebutton() {
+		 DashboardPage dashboard=new DashboardPage(driver);
+		 dashboard.clickhomebutton(); 
+	     dashboard.clickokbutton();
+	}
+	
+	@Test (priority=3)
+	public void verifydashboardbutton()
+	
+	{
+		DashboardPage dashboard=new DashboardPage(driver);
+		 dashboard.clickdashboardbutton(); 
+		 dashboard.typename("XXX");
+		 dashboard.clickokafterentername();
+		 
+	}
+	
+	 @AfterTest public void closedriver()
+	 
+	 { 
+		 driver.quit(); 
+	 }
+	  
+	}
+
+
+

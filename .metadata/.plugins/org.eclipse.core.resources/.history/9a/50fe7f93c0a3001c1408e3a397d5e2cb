@@ -1,0 +1,27 @@
+package QAtestcommonmethods;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class commonMethods {
+	public static WebDriver driver;
+	public static WebDriver getDrivers() {
+		if (driver == null) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+		return driver;
+	}
+	// This method is used to click the element present in the webpage
+		public static void clickOnElement(By by) {
+			driver.findElement(by).click();
+		}
+
+	// This method is used to enter the input to the webpage
+		public static void enterInputintotheField(By by, String inputtext) {
+			driver.findElement(by).sendKeys(inputtext);
+		}
+}
